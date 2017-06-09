@@ -6,9 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type="text/css">
 
+      .accordion {
+        width: 100%;
+      }
+
+      .accordion-title {
+        background-color: blue;
+      }
+
+      .accordion-section {
+        display: none;
+      }
     </style>
   </head>
-  <body></body>
+  <body>
+    <button class="accordion">Section 1</button>
+    <div class="accordion-section">
+      <p>HELLO</p>
+    </div>
+    <button class="accordion">Section 2</button>
+    <div class="accordion-section">
+      <p>HELLO</p>
+    </div>
+    <button class="accordion">Section 3</button>
+    <div class="accordion-section">
+      <p>HELLO</p>
+    </div>
+  </body>
   <script type="text/javascript">
+    window.onload = () => {
+      const accordionButtons = document.getElementsByClassName('accordion');
 
+      for (let i = 0; i < accordionButtons.length; i++) {
+        const singleAccordionButton = accordionButtons[i];
+        const accordionSection = singleAccordionButton.nextElementSibling;
+
+        singleAccordionButton.onclick = () => {
+          if (accordionSection.style.display === 'block') {
+            accordionSection.style.display = 'none';
+          } else {
+            accordionSection.style.display = 'block';
+          }
+        };
+      }
+    };
   </script>
