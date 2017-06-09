@@ -20,9 +20,23 @@
       }
 
       .accordion-section {
-        display: none;
         padding: 0 18px;
         border: 1px solid #ddd;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.2s ease-out;
+      }
+
+      button.accordion:after {
+        content: '\02795'; /* Unicode character for "plus" sign (+) */
+        font-size: 13px;
+        color: #777;
+        float: right;
+        margin-left: 5px;
+      }
+
+      button.accordion.active:after {
+        content: "\2796"; /* Unicode character for "minus" sign (-) */
       }
     </style>
   </head>
@@ -49,10 +63,11 @@
         const accordionSection = singleAccordionButton.nextElementSibling;
 
         singleAccordionButton.onclick = () => {
-          if (accordionSection.style.display === 'block') {
-            accordionSection.style.display = 'none';
+          singleAccordionButton.classList.toggle('active');
+          if (accordionSection.style.maxHeight) {
+            accordionSection.style.maxHeight = null;
           } else {
-            accordionSection.style.display = 'block';
+            accordionSection.style.maxHeight = accordionSection.scrollHeight + 'px';
           }
         };
       }
