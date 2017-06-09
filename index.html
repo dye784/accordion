@@ -63,11 +63,14 @@
         const accordionSection = singleAccordionButton.nextElementSibling;
 
         singleAccordionButton.onclick = () => {
+          // toggle active class
           singleAccordionButton.classList.toggle('active');
           if (accordionSection.style.maxHeight) {
             accordionSection.style.maxHeight = null;
           } else {
-            accordionSection.style.maxHeight = accordionSection.scrollHeight + 'px';
+            // Slide down the content by setting a calculated max-height,
+            // depending on the panel's height on different screen sizes:
+            accordionSection.style.maxHeight = `${accordionSection.scrollHeight}px`;
           }
         };
       }
